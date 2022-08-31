@@ -6,7 +6,7 @@
     </section>
 
       <router-link to="/profile">View Profile</router-link>
-    
+
       <section id="tasks">
         <TaskList />
       </section>

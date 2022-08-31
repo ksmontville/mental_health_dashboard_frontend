@@ -1,0 +1,241 @@
+@import "./base.css";
+
+/* General Styling */
+#app {
+  max-width: 1280px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-weight: normal;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: black;
+}
+
+header {
+  background-color: darkslateblue;
+  text-align: center;
+  min-width: 100vw;
+}
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 4vw;
+  justify-content: space-between;
+  min-width: 100vw;
+}
+
+footer {
+  background-color: darkslateblue;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  min-width: 100vw;
+  color: lavenderblush;
+}
+
+footer label {
+  color: darkslateblue;
+
+}
+footer a {
+  color: lavenderblush;
+}
+
+.footer__content__top {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+footer .footer-contact {
+  flex: 2;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+footer .footer-contact button {
+  align-self: center;
+  margin: 2.4vw 0;
+}
+
+footer .text-container {
+  flex: 1;
+  padding: 2.4vw;
+}
+
+.footer__span{
+  padding: 3.6vw;
+}
+
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+.active {
+  border: solid 2px yellow;
+}
+
+
+/* Navbar Styling */
+ul {
+  list-style: none;
+  margin: 1.2vw;
+  padding: 1.2vw;
+}
+
+li {
+  font-size: 4.8vw;
+  margin: 3.6vw;
+}
+
+.navbar {
+  background-color: lavender !important;
+  padding: 1vw;
+  min-width: 100vw;
+}
+
+.navbar-brand {
+
+}
+.nav-link {
+}
+
+
+/* LandingPage Styling */
+.content.bg-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url('img/rainbow_door.jpg');
+  background-size: cover;
+  opacity: 0.75;
+
+}
+
+.content--get-started {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.content--get-started  button {
+  min-width: 64vw;
+  background-color: darkslateblue !important;
+  border-color: lavender !important;
+  color: lavender !important;
+}
+
+.content--get-started figure {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.content--get-started .img-fluid {
+  max-width: 70%;
+  height: auto;
+}
+
+.content--features {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.content--features .img-container {
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4vw 12vw;
+}
+
+.content--features .img-fluid {
+  max-width: 30%;
+  height: auto;
+}
+
+.content--about {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.content--about figure {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.content--about .img-fluid {
+  max-width: 75%;
+  height: auto;
+}
+
+
+
+/* UserDashboard Styling */
+.dashboard.bg-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url('img/dashbackground1.jpg');
+  background-size: cover;
+  background-color: black;
+}
+
+.dashboard.text-container a {
+  color: lavenderblush;
+}
+
+/* UserProfile styling*/
+
+
+/* TaskList Styling*/
+.btn.btn-primary {
+
+}
+
+.taskList__input {
+  border: none;
+  border-bottom: 2px solid lightpink;
+}
+
+
+
+/* Media Settings */
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+  }
+
+  #app {
+    max-width: 10%;
+  }
+}

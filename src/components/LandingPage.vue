@@ -9,7 +9,7 @@
       </div>
       <div class="content img-container p-3 mb-3">
         <figure>
-          <img src="src/assets/img/brain.jpg" class="img-fluid img-thumbnail rounded" alt="The Best Gift is You!">
+          <img src="" class="img-fluid img-thumbnail rounded" alt="The Best Gift is You!">
           <figcaption><em>Your brain will thank you</em></figcaption>
         </figure>
       </div>

@@ -231,9 +231,14 @@ li {
 
 /* Gratitude Board Styling*/
 canvas {
+  border: 2px solid rosybrown;
   background-color: white;
-  border: 8px solid rosybrown;
-  width: 100vw;
+}
+
+.canvas-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 .toolbar {

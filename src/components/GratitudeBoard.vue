@@ -1,72 +1,74 @@
 <template>
   <div class="dashboard bg-wrapper bg-gradient">
-  <nav>
-    <DashboardNavbar />
-  </nav>
+    <nav>
+      <DashboardNavbar />
+    </nav>
 
-  <div class="toolbar">
-    <div class="container-fluid">
-      <div class="input-group mb-3">
-        <input type="file" class="form-control" id="imgUpload">
-        <label class="input-group-text" for="imgUpload">Upload</label>
+    <div class="canvas-wrapper">
+      <div class="toolbar">
+        <div class="container-fluid">
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" id="imgUpload">
+            <label class="input-group-text" for="imgUpload">Upload</label>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-    <button @click="drawRect">Draw Squares</button>
-    <button @click="drawLine">Draw Lines</button>
-    <canvas ref="board" width="300" height="400">
-      This is a canvas
-    </canvas>
+      <button @click="clearBoard">Clear</button>
+
+      <div>
+        Mouse x: {{mouseX}}, Mouse y: {{mouseY}}
+      </div>
+
+      <canvas ref="board" width="375" height="600" @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
+        This is a canvas
+      </canvas>
+    </div>
   </div>
 </template>
 
 <script>
-import {onMounted, onUpdated, ref} from "vue";
+import {onMounted, onUpdated, reactive, ref} from "vue";
 
 export default {
   name: "GratitudeBoard",
 
   setup() {
-
     const board = ref(null)
+    const mouseX = ref()
+    const mouseY = ref()
+    const mouseIsDown = ref(false)
 
-    onMounted(() => {
 
-    })
-
-    onUpdated(() => {
-
-    })
-
-    function drawRect() {
-      const ctx = board.value.getContext('2d')
-      ctx.fillStyle = 'rgb(200, 0, 0)'
-      ctx.fillRect(10, 10, 100, 100)
-
-      ctx.fillStyle = 'rgb(0, 200, 0, 0.5)'
-      ctx.fillRect(50, 50, 100, 100)
+    function toggleMouseIsDown(event) {
+      event.type === 'mousedown' ? mouseIsDown.value = true : mouseIsDown.value = false
+      // mouseIsDown.value = !mouseIsDown.value
     }
 
-    function drawLine() {
+    function clearBoard() {
       const ctx = board.value.getContext('2d')
-
-
-      ctx.beginPath()
-      ctx.strokeStyle = 'purple'
-      ctx.moveTo(50, 50)
-      ctx.lineTo(100, 100, )
-      ctx.stroke()
-
-      ctx.beginPath()
-      ctx.strokeStyle = 'green'
-      ctx.moveTo(500, 500)
-      ctx.lineTo(-200, 200)
-      ctx.stroke()
-
+      ctx.clearRect(0, 0, 800, 800)
     }
 
-    return {board, drawRect, drawLine}
+    function getMouseCoords(event) {
+      mouseX.value = event.offsetX
+      mouseY.value = event.offsetY
+    }
+
+    function draw(event) {
+      const ctx = board.value.getContext('2d')
+      getMouseCoords(event)
+      let mx = event.offsetX
+      let my = event.offsetY
+
+      ctx.beginPath()
+      if(mouseIsDown.value){
+        ctx.arc(mx, my, 10, 0 , 360 )
+        ctx.fill()
+      }
+    }
+
+    return {board, draw, clearBoard, toggleMouseIsDown, mouseIsDown, mouseX, mouseY}
   }
 }
 

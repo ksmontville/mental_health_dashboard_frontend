@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createAuth0 } from '@auth0/auth0-vue'
+import Vue3TouchEvents from 'vue3-touch-events'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
 import './assets/main.css'
@@ -14,7 +15,6 @@ import UserProfile from './components/UserProfile.vue'
 import PageFooter from './components/PageFooter.vue'
 import DashboardNavbar from './components/DashboardNavbar.vue'
 import GratitudeBoard from './components/GratitudeBoard.vue'
-
 const app = createApp(App)
 app
     .use(router)
@@ -26,6 +26,7 @@ app
         audience: "https://django-rest-api",
         })
     )
+    .use(Vue3TouchEvents)
     .component('PageHeader', PageHeader)
     .component('Navbar', Navbar)
     .component('LandingPage', LandingPage)

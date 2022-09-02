@@ -20,7 +20,7 @@
         Mouse x: {{mouseX}}, Mouse y: {{mouseY}}
       </div>
 
-      <canvas ref="board" width="375" height="600" @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
+      <canvas ref="board" width="375" height="600" v-touch:drag="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
         This is a canvas
       </canvas>
     </div>
@@ -28,12 +28,24 @@
 </template>
 
 <script>
+
 import {onMounted, onUpdated, reactive, ref} from "vue";
 
 export default {
   name: "GratitudeBoard",
 
   setup() {
+
+    onMounted(() => {
+      // const touch_script_1 = document.createElement('script')
+      // touch_script_1.setAttribute('src', "libs/vue.js")
+      // document.head.appendChild(touch_script_1)
+      //
+      // const touch_script_2 = document.createElement('script')
+      // touch_script_2.setAttribute('src', "libs/vue3-touch-events.js")
+      // document.head.appendChild(touch_script_2)
+    })
+
     const board = ref(null)
     const mouseX = ref()
     const mouseY = ref()
@@ -71,6 +83,7 @@ export default {
     return {board, draw, clearBoard, toggleMouseIsDown, mouseIsDown, mouseX, mouseY}
   }
 }
+
 
 </script>
 

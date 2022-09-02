@@ -17,7 +17,8 @@
       <button @click="clearBoard">Clear</button>
 
       <div>
-        Mouse x: {{mouseX}}, Mouse y: {{mouseY}}
+        Mouse x: {{mouseX}}, Mouse y: {{mouseY}}<br>
+        Touch x: {{touchX}}, Touch y: {{touchY}}
       </div>
 
       <canvas ref="board" width="375" height="600" @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart" @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
@@ -50,8 +51,8 @@ export default {
       event.type === 'mousedown' ? mouseIsDown.value = true : mouseIsDown.value = false
     }
 
-    function toggleTouchStart(TouchEvent) {
-      TouchEvent.type === 'touchstart' ? touchStart.value = true : touchStart.value = false
+    function toggleTouchStart(event) {
+      event.type === 'touchstart' ? touchStart.value = true : touchStart.value = false
     }
 
     function clearBoard() {
@@ -64,14 +65,14 @@ export default {
       mouseY.value = event.offsetY
     }
 
-    function getTouchCoords(TouchEvent) {
-      touchX.value = TouchEvent.offsetX
-      touchY.value = TouchEvent.offsetY
+    function getTouchCoords(event) {
+      touchX.value = event.offsetX
+      touchY.value = event.offsetY
     }
 
     function draw(event) {
-      const ctx = board.value.getContext('2d')
       getMouseCoords(event)
+      const ctx = board.value.getContext('2d')
       let mx = event.offsetX
       let my = event.offsetY
 
@@ -82,10 +83,13 @@ export default {
       }
     }
 
-    function touch(TouchEvent) {
+    function touch(event) {
+      event.preventDefault()
+      console.log("touchstart")
+      getTouchCoords(event)
       const ctx = board.value.getContext('2d')
-      let tx = TouchEvent.offsetX
-      let ty = TouchEvent.offsetY
+      let tx = event.offsetX
+      let ty = event.offsetY
 
       if(touchStart.value) {
         ctx.beginPath()

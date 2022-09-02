@@ -20,7 +20,7 @@
         Mouse x: {{mouseX}}, Mouse y: {{mouseY}}
       </div>
 
-      <canvas ref="board" width="375" height="600" v-on:touchstart="draw" @touchstart="toggleMouseIsDown" @touchend="toggleMouseIsDown">
+      <canvas ref="board" width="375" height="600" @touchmove="touch" @touchstart="toggleMouseIsDown" @touchend="toggleTouchStart" @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
         This is a canvas
       </canvas>
     </div>
@@ -35,16 +35,23 @@ export default {
   name: "GratitudeBoard",
 
   setup() {
-
     const board = ref(null)
+
     const mouseX = ref()
     const mouseY = ref()
     const mouseIsDown = ref(false)
 
+    const touchX = ref()
+    const touchY = ref()
+    const touchStart = ref(false)
+
 
     function toggleMouseIsDown(event) {
-      event.type === 'touchstart' ? mouseIsDown.value = true : mouseIsDown.value = false
-      // mouseIsDown.value = !mouseIsDown.value
+      event.type === 'mousedown' ? mouseIsDown.value = true : mouseIsDown.value = false
+    }
+
+    function toggleTouchStart(event) {
+      TouchEvent.type === 'touchstart' ? touchStart.value = true : touchStart.value = false
     }
 
     function clearBoard() {
@@ -57,20 +64,37 @@ export default {
       mouseY.value = event.offsetY
     }
 
+    function getTouchCoords(TouchEvent) {
+      touchX.value = TouchEvent.offsetX
+      touchY.value = TouchEvent.offsetY
+    }
+
     function draw(event) {
       const ctx = board.value.getContext('2d')
       getMouseCoords(event)
       let mx = event.offsetX
       let my = event.offsetY
 
-
+      if(mouseIsDown.value) {
         ctx.beginPath()
         ctx.arc(mx, my, 10, 0 , 360 )
         ctx.fill()
-
+      }
     }
 
-    return {board, draw, clearBoard, toggleMouseIsDown, mouseIsDown, mouseX, mouseY}
+    function touch(TouchEvent) {
+      const ctx = board.value.getContext('2d')
+      let tx = TouchEvent.offsetX
+      let ty = TouchEvent.offsetY
+
+      if(touchStart.value) {
+        ctx.beginPath()
+        ctx.arc(tx, ty, 10, 0, 360)
+        ctx.fill
+      }
+    }
+
+    return {board, draw, clearBoard, toggleMouseIsDown, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY, toggleTouchStart, touch}
   }
 }
 

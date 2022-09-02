@@ -20,7 +20,7 @@
         Mouse x: {{mouseX}}, Mouse y: {{mouseY}}
       </div>
 
-      <canvas ref="board" width="375" height="600" v-touch:drag="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
+      <canvas ref="board" width="375" height="600" v-on:touchstart="draw" @touchstart="toggleMouseIsDown" @touchend="toggleMouseIsDown">
         This is a canvas
       </canvas>
     </div>
@@ -36,16 +36,6 @@ export default {
 
   setup() {
 
-    onMounted(() => {
-      // const touch_script_1 = document.createElement('script')
-      // touch_script_1.setAttribute('src', "libs/vue.js")
-      // document.head.appendChild(touch_script_1)
-      //
-      // const touch_script_2 = document.createElement('script')
-      // touch_script_2.setAttribute('src', "libs/vue3-touch-events.js")
-      // document.head.appendChild(touch_script_2)
-    })
-
     const board = ref(null)
     const mouseX = ref()
     const mouseY = ref()
@@ -53,7 +43,7 @@ export default {
 
 
     function toggleMouseIsDown(event) {
-      event.type === 'mousedown' ? mouseIsDown.value = true : mouseIsDown.value = false
+      event.type === 'touchstart' ? mouseIsDown.value = true : mouseIsDown.value = false
       // mouseIsDown.value = !mouseIsDown.value
     }
 
@@ -73,11 +63,11 @@ export default {
       let mx = event.offsetX
       let my = event.offsetY
 
-      ctx.beginPath()
-      if(mouseIsDown.value){
+
+        ctx.beginPath()
         ctx.arc(mx, my, 10, 0 , 360 )
         ctx.fill()
-      }
+
     }
 
     return {board, draw, clearBoard, toggleMouseIsDown, mouseIsDown, mouseX, mouseY}

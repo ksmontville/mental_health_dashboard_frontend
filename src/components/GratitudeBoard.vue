@@ -90,7 +90,7 @@ export default {
       if(touchStart.value) {
         ctx.beginPath()
         ctx.arc(tx, ty, 10, 0, 360)
-        ctx.fill
+        ctx.fill()
       }
     }
 

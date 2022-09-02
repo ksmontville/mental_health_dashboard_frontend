@@ -229,6 +229,17 @@ li {
 }
 
 
+/* Gratitude Board Styling*/
+canvas {
+  background-color: white;
+  border: 8px solid rosybrown;
+  width: 100vw;
+}
+
+.toolbar {
+  background-color: gray;
+}
+
 
 /* Media Settings */
 @media (hover: hover) {

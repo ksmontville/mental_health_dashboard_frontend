@@ -15,7 +15,7 @@
       <div class="btn-group-vertical btn-group-lg">
         <button class="btn btn-sm btn-info bg-gradient p-2 mb-2"><router-link to="/dashboard">Dashboard</router-link></button>
         <button class="btn btn-sm btn-info bg-gradient p-2 mb-2"><router-link to="/tasklist">Activities</router-link></button>
-        <button class="btn btn-sm btn-info bg-gradient p-2 mb-2"><router-link to="">Gratitude Board</router-link></button>
+        <button class="btn btn-sm btn-info bg-gradient p-2 mb-2"><router-link to="/board">Gratitude Board</router-link></button>
         <button class="btn btn-sm btn-info bg-gradient p-2 mb-2"><router-link to="">Sleep Tracker</router-link></button>
         <button class="btn btn-sm btn-info bg-gradient p-2 mb-2"><router-link to="">Journal</router-link></button>
         <button class="btn btn-sm btn-info bg-gradient p-2 mb-2"><router-link to="">Statistics</router-link></button>

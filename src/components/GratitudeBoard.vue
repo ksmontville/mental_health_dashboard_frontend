@@ -20,7 +20,7 @@
         Mouse x: {{mouseX}}, Mouse y: {{mouseY}}
       </div>
 
-      <canvas ref="board" width="375" height="600" @touchmove="touch" @touchstart="toggleMouseIsDown" @touchend="toggleTouchStart" @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
+      <canvas ref="board" width="375" height="600" @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart" @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
         This is a canvas
       </canvas>
     </div>
@@ -50,7 +50,7 @@ export default {
       event.type === 'mousedown' ? mouseIsDown.value = true : mouseIsDown.value = false
     }
 
-    function toggleTouchStart(event) {
+    function toggleTouchStart(TouchEvent) {
       TouchEvent.type === 'touchstart' ? touchStart.value = true : touchStart.value = false
     }
 

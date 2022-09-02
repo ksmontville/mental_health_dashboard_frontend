@@ -21,7 +21,7 @@
         Touch x: {{touchX}}, Touch y: {{touchY}}
       </div>
 
-      <canvas ref="board" width="375" height="600" @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart" @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
+      <canvas ref="board" width="375" height="600" @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart">
         This is a canvas
       </canvas>
     </div>
@@ -51,8 +51,8 @@ export default {
       event.type === 'mousedown' ? mouseIsDown.value = true : mouseIsDown.value = false
     }
 
-    function toggleTouchStart(event) {
-      event.type === 'touchstart' ? touchStart.value = true : touchStart.value = false
+    function toggleTouchStart(TouchEvent) {
+      TouchEvent.type === 'touchstart' ? touchStart.value = true : touchStart.value = false
     }
 
     function clearBoard() {
@@ -65,9 +65,10 @@ export default {
       mouseY.value = event.offsetY
     }
 
-    function getTouchCoords(event) {
-      touchX.value = event.offsetX
-      touchY.value = event.offsetY
+    function getTouchCoords(TouchEvent) {
+      const touch = TouchEvent.touches[0]
+      touchX.value = touch.pageX
+      touchY.value = touch.pageY
     }
 
     function draw(event) {
@@ -83,15 +84,15 @@ export default {
       }
     }
 
-    function touch(event) {
-      event.preventDefault()
-      console.log("touchstart")
-      getTouchCoords(event)
+    function touch(TouchEvent) {
+      getTouchCoords(TouchEvent)
       const ctx = board.value.getContext('2d')
-      let tx = event.offsetX
-      let ty = event.offsetY
+      const touch = TouchEvent.touches[0]
+      const tx = touch.clientX
+      const ty = touch.clientY
 
       if(touchStart.value) {
+        console.log('touchstart')
         ctx.beginPath()
         ctx.arc(tx, ty, 10, 0, 360)
         ctx.fill()

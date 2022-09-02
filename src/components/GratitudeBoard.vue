@@ -67,8 +67,8 @@ export default {
 
     function getTouchCoords(TouchEvent) {
       const touch = TouchEvent.touches[0]
-      touchX.value = touch.pageX
-      touchY.value = touch.pageY
+      touchX.value = touch.clientX
+      touchY.value = touch.clientY
     }
 
     function draw(event) {
@@ -85,15 +85,16 @@ export default {
     }
 
     function touch(TouchEvent) {
+      TouchEvent.preventDefault()
       getTouchCoords(TouchEvent)
       const ctx = board.value.getContext('2d')
-      const touch = TouchEvent.touches[0]
+      const touch = TouchEvent.changedTouches[0]
       const tx = touch.clientX
       const ty = touch.clientY
 
+      ctx.beginPath()
       if(touchStart.value) {
         console.log('touchstart')
-        ctx.beginPath()
         ctx.arc(tx, ty, 10, 0, 360)
         ctx.fill()
       }

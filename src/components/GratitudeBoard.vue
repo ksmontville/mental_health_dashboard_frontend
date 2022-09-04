@@ -16,12 +16,8 @@
 
       <button @click="clearBoard">Clear</button>
 
-      <div>
-        Mouse x: {{mouseX}}, Mouse y: {{mouseY}}<br>
-        Touch x: {{touchX}}, Touch y: {{touchY}}
-      </div>
-
-      <canvas ref="board" width="375" height="600" @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart">
+      <canvas ref="board" width="400" height="600" @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"
+      @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
         This is a canvas
       </canvas>
     </div>
@@ -57,52 +53,46 @@ export default {
 
     function clearBoard() {
       const ctx = board.value.getContext('2d')
-      ctx.clearRect(0, 0, 800, 800)
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
     }
 
-    function getMouseCoords(event) {
-      mouseX.value = event.offsetX
-      mouseY.value = event.offsetY
-    }
-
-    function getTouchCoords(TouchEvent) {
-      const touch = TouchEvent.touches[0]
-      touchX.value = touch.clientX
-      touchY.value = touch.clientY
+    function drawDot(x, y, ctx) {
+      ctx.beginPath()
+      ctx.arc(x, y, Math.PI, 0, 360)
+      ctx.fill()
     }
 
     function draw(event) {
-      getMouseCoords(event)
       const ctx = board.value.getContext('2d')
       let mx = event.offsetX
       let my = event.offsetY
 
-      if(mouseIsDown.value) {
-        ctx.beginPath()
-        ctx.arc(mx, my, 10, 0 , 360 )
-        ctx.fill()
+      if (mouseIsDown.value) {
+        drawDot(mx, my, ctx)
       }
     }
 
     function touch(TouchEvent) {
       TouchEvent.preventDefault()
-      getTouchCoords(TouchEvent)
-      const ctx = board.value.getContext('2d')
-      const touch = TouchEvent.changedTouches[0]
-      const tx = touch.clientX
-      const ty = touch.clientY
+      TouchEvent.stopPropagation()
 
-      ctx.beginPath()
-      if(touchStart.value) {
-        console.log('touchstart')
-        ctx.arc(tx, ty, 10, 0, 360)
-        ctx.fill()
+      const ctx = board.value.getContext('2d')
+      const canvasPos = board.value.getBoundingClientRect()
+      const touch = TouchEvent.touches[0]
+      const tx = touch.clientX - canvasPos.x
+      const ty = touch.clientY - canvasPos.y
+
+      if (touchStart.value) {
+        drawDot(tx, ty, ctx)
       }
     }
 
-    return {board, draw, clearBoard, toggleMouseIsDown, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY, toggleTouchStart, touch}
+      return {
+      board, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY,
+        draw, clearBoard, toggleMouseIsDown, toggleTouchStart, touch,
+      }
+    }
   }
-}
 
 
 </script>

@@ -232,6 +232,8 @@ li {
 /* Gratitude Board Styling*/
 canvas {
   background-color: white;
+  touch-action: none;
+  object-fit: contain;
 }
 
 .canvas-wrapper {

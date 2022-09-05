@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
 import './assets/main.css'
 import Vue3TouchEvents from 'vue3-touch-events'
+import VueKonva from 'vue-konva'
 import App from './App.vue'
 import router from './router'
 import PageHeader from './components/PageHeader.vue'
@@ -27,6 +28,7 @@ app
         })
     )
     .use(Vue3TouchEvents)
+    .use(VueKonva)
     .component('PageHeader', PageHeader)
     .component('Navbar', Navbar)
     .component('LandingPage', LandingPage)

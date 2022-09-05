@@ -8,13 +8,16 @@
       <div class="toolbar">
         <div class="container-fluid">
           <div class="input-group mb-3">
-            <input type="file" class="form-control" id="imgUpload">
-            <label class="input-group-text" for="imgUpload">Upload</label>
+
+            <input ref= "imgInput" accept="image/*" type="file" class="form-control" id="imgUpload" v-on:change="">
+            <label class="input-group-text" for="" @click="getImageURL">Upload</label>
+
+
           </div>
         </div>
       </div>
 
-      <button @click="clearBoard">Clear</button>
+      <button @click="clearCanvas">Clear</button>
 
       <canvas ref="board" width="400" height="600" @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"
       @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown">
@@ -32,7 +35,10 @@ export default {
   name: "GratitudeBoard",
 
   setup() {
-    const board = ref(null)
+    const canvas = ref(null)
+    const image = ref('')
+    const imgInput = ref('')
+    const canvasImg = ref('')
 
     const mouseX = ref()
     const mouseY = ref()
@@ -51,9 +57,31 @@ export default {
       TouchEvent.type === 'touchstart' ? touchStart.value = true : touchStart.value = false
     }
 
-    function clearBoard() {
-      const ctx = board.value.getContext('2d')
+    function clearCanvas() {
+      const ctx = canvas.value.getContext('2d')
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+      imgInput.value.text = ''
+    }
+
+   function getImageURL() {
+    const file = imgInput.value.files[0]
+
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+      reader.onload = () => {
+        drawImg(reader.result)
+      }
+   }
+
+    function drawImg(path) {
+      const ctx = canvas.value.getContext('2d')
+      const img = new Image()
+
+      img.src = path
+      img.onload = () => {
+        // ctx.translate(200, 200)
+        ctx.drawImage(img, 50, 50, 100, 100)
+      }
     }
 
     function drawDot(x, y, ctx) {
@@ -63,7 +91,7 @@ export default {
     }
 
     function draw(event) {
-      const ctx = board.value.getContext('2d')
+      const ctx = canvas.value.getContext('2d')
       let mx = event.offsetX
       let my = event.offsetY
 
@@ -76,8 +104,8 @@ export default {
       TouchEvent.preventDefault()
       TouchEvent.stopPropagation()
 
-      const ctx = board.value.getContext('2d')
-      const canvasPos = board.value.getBoundingClientRect()
+      const ctx = canvas.value.getContext('2d')
+      const canvasPos = canvas.value.getBoundingClientRect()
       const touch = TouchEvent.touches[0]
       const tx = touch.clientX - canvasPos.x
       const ty = touch.clientY - canvasPos.y
@@ -88,8 +116,8 @@ export default {
     }
 
       return {
-      board, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY,
-        draw, clearBoard, toggleMouseIsDown, toggleTouchStart, touch,
+      board: canvas, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY, image, imgInput, canvasImg,
+        draw, clearCanvas, toggleMouseIsDown, toggleTouchStart, touch, drawImg, getImageURL,
       }
     }
   }

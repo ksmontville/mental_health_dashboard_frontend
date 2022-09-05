@@ -236,6 +236,10 @@ canvas {
   object-fit: contain;
 }
 
+.konvajs-content {
+  background-color: lavender;
+}
+
 .canvas-wrapper {
   display: flex;
   flex-flow: row wrap;

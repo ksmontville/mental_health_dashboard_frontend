@@ -76,7 +76,7 @@ export default {
         radius: 5,
         fill: 'black'
       })
-      
+
       ctx.preventDefault()
       if(touchStart.value) {
         ctx.add(dot)

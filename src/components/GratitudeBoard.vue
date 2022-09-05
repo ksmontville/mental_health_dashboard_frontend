@@ -5,19 +5,20 @@
     </nav>
 
     <div class="canvas-wrapper" id="canvasContainer">
-      <div class="toolbar">
+      <div class="toolbar bg-gradient" style="background-color: black">
           <div class="input-group mb-3">
             <input ref= "imgInput" accept="image/*" type="file" class="form-control" id="imgUpload" v-on:change="">
-            <label class="input-group-text" for="" @click="">Upload</label>
-            <button @click="draw">Draw Dot</button>
+            <label class="input-group-text" for="" @click="drawImg">Upload</label>
           </div>
+          <button class="btn btn-info" @click="clear">Clear</button>
       </div>
 
-      <v-stage ref="stage" :config="config">
+      <v-stage ref="stage" :config="stageConfig">
         <v-layer @click="draw" ref="layer">
-          <v-rect id="canvas" :config="{x:0, y:0, width:400, height: 600, fill: 'white'}"
+          <v-rect id="canvas" :config="canvasConfig"
                   @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown"
-                  @touchmove="draw" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"/>
+                  @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"/>
+          <v-image id="uploadedImage" />
         </v-layer>
       </v-stage>
 
@@ -35,12 +36,20 @@ export default {
 
   setup() {
     const stage = ref()
-    const layer= ref()
-    const config = {
+    const stageConfig = {
       width: 400,
       height: 600,
     }
 
+    const layer= ref()
+    const canvasConfig = {
+      width: 400,
+      height: 600,
+      fill: 'lavender'
+    }
+
+    const imgInput = ref('')
+    const imgUploaded = ref()
 
     const mouseX = ref()
     const mouseY = ref()
@@ -49,6 +58,15 @@ export default {
     const touchX = ref()
     const touchY = ref()
     const touchStart = ref(false)
+
+    function clear() {
+      const ctx = layer.value.getNode()
+      const children = ctx.children
+
+      for(const child of children.slice(1, children.length)) {
+          child.remove()
+      }
+    }
 
     function draw() {
       const mousePos = stage.value.getNode().getPointerPosition()
@@ -83,6 +101,25 @@ export default {
       }
     }
 
+   function drawImg() {
+    const ctx = layer.value.getNode()
+    const newImage = new window.Image()
+    const file = imgInput.value.files[0]
+    const reader = new FileReader()
+
+    reader.readAsDataURL(file)
+      reader.onload = () => {
+        newImage.src = reader.result
+        imgUploaded.value = new Konva.Image({
+          image: newImage,
+          width: 100,
+          height: 100,
+          draggable: true,
+        })
+        ctx.add(imgUploaded.value)
+       }
+
+   }
 
     function toggleMouseIsDown(event) {
       event.type === 'mousedown' ? mouseIsDown.value = true : mouseIsDown.value = false
@@ -92,45 +129,9 @@ export default {
       TouchEvent.type === 'touchstart' ? touchStart.value = true : touchStart.value = false
     }
 
-    // function draw(event) {
-    //   const ctx = canvas.value.getContext('2d')
-    //   let mx = event.offsetX
-    //   let my = event.offsetY
-    //
-    //   if (mouseIsDown.value) {
-    //     drawDot(mx, my, ctx)
-    //   }
-    // }
-    //
-    // function touch(TouchEvent) {
-    //   TouchEvent.preventDefault()
-    //   TouchEvent.stopPropagation()
-    //
-    //   const ctx = canvas.value.getContext('2d')
-    //   const canvasPos = canvas.value.getBoundingClientRect()
-    //   const touch = TouchEvent.touches[0]
-    //   const tx = touch.clientX - canvasPos.x
-    //   const ty = touch.clientY - canvasPos.y
-    //
-    //   if (touchStart.value) {
-    //     drawDot(tx, ty, ctx)
-    //   }
-    // }
-   // function getImageURL() {
-   //  const file = imgInput.value.files[0]
-   //
-   //  const reader = new FileReader()
-   //  reader.readAsDataURL(file)
-   //    reader.onload = () => {
-   //      drawImg(reader.result)
-   //    }
-   // }
-
-
-
-      return {
-      stage, layer, config, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY,
-      draw, toggleMouseIsDown, touch, toggleTouchStart
+    return {
+    stage, layer, stageConfig, imgInput, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY, canvasConfig, imgUploaded,
+    draw, toggleMouseIsDown, touch, toggleTouchStart, clear, drawImg,
       }
     },
   }

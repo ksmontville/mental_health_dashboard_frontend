@@ -124,7 +124,7 @@ li {
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url('public/img/rainbow_door.jpg');
+  background-image: url('/img/rainbow_door.jpg');
   background-size: cover;
   opacity: 1;
 }

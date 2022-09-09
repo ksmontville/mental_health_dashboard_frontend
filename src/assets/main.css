@@ -8,7 +8,7 @@
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  color: lightcyan;
+  color: white;
   font-weight: normal;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -82,10 +82,6 @@ footer .text-container {
   transition: 0.4s;
 }
 
-.active {
-  border: solid 2px yellow;
-}
-
 
 /* Navbar Styling */
 ul {
@@ -99,8 +95,8 @@ li {
 }
 
 .navbar {
-  background-color: lavenderblush !important;
-  padding: 1.2vw 2.4vw;
+  background-color: ghostwhite !important;
+  padding: 0 1.2vw;
 
 }
 
@@ -114,7 +110,7 @@ li {
 /* LandingPage Styling */
 
 .img-fluid {
-  box-shadow: 0.8vw 1.2vw lightyellow;
+  box-shadow: 0.8vw 1.2vw lightcyan;
 }
 
 .content.bg-wrapper::before {
@@ -187,6 +183,13 @@ li {
   border-color: lightyellow;
 }
 
+.content--share .img-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .content--about {
   display: flex;
   flex-flow: column wrap;
@@ -247,18 +250,6 @@ li {
 
 
 /* Gratitude Board Styling*/
-canvas {
-  background-color: white;
-  touch-action: none;
-  object-fit: contain;
-}
-
-.canvas-wrapper {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-}
-
 .toolbar {
   background-color: gray;
 }

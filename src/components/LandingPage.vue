@@ -5,13 +5,13 @@
       <div class="container-fluid content img-container p-3 mb-3">
         <figure class="figure text-center">
           <img src="/img/drowning.jpg" class="figure-img img-fluid rounded" alt="A person struggling with mental health issues">
-          <figcaption class="figure-caption"><em>Feel like you're drowning?</em></figcaption>
+          <figcaption class="figure-caption p-2 mb-2"><em>Feel like you're drowning?</em></figcaption>
         </figure>
       </div>
 
     </section>
 
-    <section class="container-fluid content content--call">
+    <section class="container-fluid content content--call p-3 mb-3">
       <span>
         <img src="/icon/chevron-double-right.svg" class="p-3 mb-3" alt="Chevron Double Right">
         <button class="btn btn-primary btn-lg bg-gradient p-4 mb-4" v-if="isAuthenticated" @click="router.push('/dashboard')">To Dashboard</button>
@@ -23,7 +23,7 @@
         <hr class="section-break">
       </div>
 
-      <h2 class="display-2 p-4 mt-4 mb-4">
+      <h2 class="display-2 p-3 mt-3 mb-3">
           With MasterMind<br>you can...
       </h2>
     </section>
@@ -31,29 +31,20 @@
     <section class="container-fluid content content--get-started p-3 mb-3" id="getStarted">
       <div class="content text-container p-3 mb-3">
         <h3 class="display-3 text-decoration-underline">Track</h3>
-        <ul>
-          <li>
-            <p>Start tracking your mental health with curated exercises recommended by real medical professionals!</p>
-          </li>
-        </ul>
+        <p class="lead p-3 mb-3">Start tracking your mental health with curated exercises recommended by real medical professionals!</p>
       </div>
       <div class="container-fluid content img-container p-3 mb-3">
         <figure class="figure text-center">
           <img src="/img/brain.jpg" class="figure-img img-fluid  rounded" alt="The Best Gift is You!">
-          <figcaption class="figure-caption"><em>Your brain will thank you!</em></figcaption>
+          <figcaption class="figure-caption p-2 mb-2"><em>Your brain will thank you!</em></figcaption>
         </figure>
       </div>
     </section>
 
-
-      <div class="container-fluid p-2">
-        <hr class="section-break">
-      </div>
-
-
     <section class="container-fluid content content--features p-3 mb-3" id="features">
       <div class="content text-container p-3 mb-3">
-        <h3 class="display-3 text-decoration-underline">Features</h3>
+        <h3 class="display-3 text-decoration-underline">Engage</h3>
+        <p class="lead p-3 mb-3">A robust set of features for taking control of your mental health.</p>
         <ul>
           <li>
             <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
@@ -75,14 +66,9 @@
             <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
             Record your progress with descriptive statistics and informative data visuals</p>
           </li>
-          <li>
-            <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
-                Share your progress on social media</p>
-          </li>
         </ul>
       </div>
 
-      <div class="container-fluid content content--features p-3 mb-3">
 
         <div id="activityCarousel" class="carousel slide carousel-fade" data-bs-ride="true">
           <div class="carousel-indicators">
@@ -130,34 +116,59 @@
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
+
         <button class="carousel-control-next" type="button" data-bs-target="#activityCarousel" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    </div>
+    </section>
+
+    <section class="container-fluid content content--share p-3 mb-3" id="share">
+      <div class="content text-container p-3 mb-3">
+        <h3 class="display-3 text-decoration-underline">Share</h3>
+        <p class="lead p-3 mb-3">Connect with other by sharing your progress on social media!</p>
+        <div class="container-fluid content img-container p-3 mb-3">
+          <img src="/icon/icons8-facebook-64.png" class="img-fluid no-shadow p-2 m-2" alt="Facebook Icon">
+          <img src="/icon/icons8-twitter-64.png" class="img-fluid no-shadow p-2 m-2" alt="Twitter Icon">
+          <img src="/icon/icons8-instagram-64.png" class="img-fluid no-shadow p-2 m-2" alt="Instagram Icon">
+<!--          <img src="/icon/icons8-youtube-logo-64.png" class="img-fluid p-2 m-2" alt="YouTube Icon">-->
+        </div>
+      </div>
     </section>
 
     <div class="container-fluid p-2">
         <hr class="section-break">
-      </div>
+    </div>
 
     <section class="container-fluid content content--about p-3 mb-3" id="missionStatement">
       <div class="content text-container p-3 mb-3">
         <h3 class="display-3 text-decoration-underline">Mission</h3>
         <ul>
           <li>
-            <p>Dr. Liza Ignatova is a fully licensed and certified practicing pediatrician specializing in adolescent mental health and well-being.</p>
+            <p class="lead p-3 mb-3">
+              Dr. Liza Ignatova is a fully licensed and certified practicing pediatrician specializing in adolescent mental health and well-being.
+            </p>
+          </li>
+          <li>
+            <p class="p-3 mb-3">
+              The intention of the <strong>Master Mind</strong> app, and of Dr. Ignatova's research as a whole, is to facilitate an understanding
+            of how to purposefully navigate the enormously complex structure that is one's mental health, and how it
+            interactions with our greater environment to describe our perception and sense of self.
+            </p>
+          </li>
+          <li>
+            <p class="p-3 mb-3">
+              Total wellness lies in comprehension of one's own mental, emotional, and social well-being.
+            </p>
           </li>
         </ul>
        </div>
 
-
       <div class="container-fluid content img-container p-3 mb-3">
-
         <figure class="figure text-center">
           <img src="/img/drliza.jpeg" class="figure-img img-fluid rounded" alt="Dr. Liza Ignatova">
-          <figcaption class="figure-caption"><em>Dr. Liza Ignatova</em></figcaption>
+          <figcaption class="figure-caption p-2 mb-2"><em>Dr. Liza Ignatova</em></figcaption>
         </figure>
       </div>
     </section>
@@ -187,7 +198,11 @@ export default {
 
 <style scoped>
   figcaption {
-    color: lightyellow;
+    color: lightcyan;
+  }
+
+  .no-shadow {
+    box-shadow: none;
   }
 
   .section-break {

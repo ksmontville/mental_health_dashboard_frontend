@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-bg-light bg-gradient">
     <div class="container-fluid" id="navbar">
       <router-link to="/" v-if="isAuthenticated" class="navbar-brand">
-        <img src="/favicon.ico" alt="Brand Logo">
+        <h6 class="display-6">H<img src="/favicon.ico" alt="Brand Logo" height="32" width="32">ME</h6>
       </router-link>
       <router-link to="/dashboard" v-else v-on:click="login" class="navbar-brand">Log In | Register</router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"

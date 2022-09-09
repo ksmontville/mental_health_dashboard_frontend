@@ -124,7 +124,7 @@ li {
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url('img/rainbow_door.jpg');
+  background-image: url('public/img/rainbow_door.jpg');
   background-size: cover;
   opacity: 1;
 }
@@ -214,7 +214,7 @@ li {
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url('img/dashbackground1.jpg');
+  background-image: url('public/img/dashbackground1.jpg');
   background-size: cover;
   background-color: black;
   padding: 0 2.4vw;

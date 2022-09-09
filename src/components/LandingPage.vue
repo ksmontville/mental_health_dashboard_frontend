@@ -4,7 +4,7 @@
       <h1 class="display-1 p-4 mb-4">This doesn't need to be you.</h1>
       <div class="container-fluid content img-container p-3 mb-3">
         <figure class="figure text-center">
-          <img src="../assets/img/drowning.jpg" class="figure-img img-fluid rounded" alt="A person struggling with mental health issues">
+          <img src="/img/drowning.jpg" class="figure-img img-fluid rounded" alt="A person struggling with mental health issues">
           <figcaption class="figure-caption"><em>Feel like you're drowning?</em></figcaption>
         </figure>
       </div>
@@ -13,10 +13,10 @@
 
     <section class="container-fluid content content--call">
       <span>
-        <img src="src/assets/icon/chevron-double-right.svg" class="p-3 mb-3" alt="Chevron Double Right">
+        <img src="/icon/chevron-double-right.svg" class="p-3 mb-3" alt="Chevron Double Right">
         <button class="btn btn-primary btn-lg bg-gradient p-4 mb-4" v-if="isAuthenticated" @click="router.push('/dashboard')">To Dashboard</button>
         <button class="btn btn-primary btn-lg bg-gradient p-4 mb-4" v-else @click="login">Get Started!</button>
-        <img src="src/assets/icon/chevron-double-left.svg" class="p-3 mb-3" alt="Chevron Double Left">
+        <img src="/icon/chevron-double-left.svg" class="p-3 mb-3" alt="Chevron Double Left">
       </span>
 
       <div class="container-fluid p-2">
@@ -39,7 +39,7 @@
       </div>
       <div class="container-fluid content img-container p-3 mb-3">
         <figure class="figure text-center">
-          <img src="../assets/img/brain.jpg" class="figure-img img-fluid  rounded" alt="The Best Gift is You!">
+          <img src="/img/brain.jpg" class="figure-img img-fluid  rounded" alt="The Best Gift is You!">
           <figcaption class="figure-caption"><em>Your brain will thank you!</em></figcaption>
         </figure>
       </div>
@@ -56,27 +56,27 @@
         <h3 class="display-3 text-decoration-underline">Features</h3>
         <ul>
           <li>
-            <p><img src="src/assets/icon/caret-right.svg" alt="Carat Right Icon">
+            <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
                 Create your own tasks, or choose from one of many presets created by mental health professionals</p>
           </li>
           <li>
-            <p><img src="src/assets/icon/caret-right.svg" alt="Carat Right Icon">
+            <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
                 Write journal entries to catalogue your daily thoughts and feelings</p>
           </li>
           <li>
-            <p><img src="src/assets/icon/caret-right.svg" alt="Carat Right Icon">
+            <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
                 Develop your own gratitude board to begin visualizing what is important to you</p>
           </li>
           <li>
-            <p><img src="src/assets/icon/caret-right.svg" alt="Carat Right Icon">
+            <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
                 Align your sleep schedule</p>
           </li>
           <li>
-            <p><img src="src/assets/icon/caret-right.svg" alt="Carat Right Icon">
+            <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
             Record your progress with descriptive statistics and informative data visuals</p>
           </li>
           <li>
-            <p><img src="src/assets/icon/caret-right.svg" alt="Carat Right Icon">
+            <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
                 Share your progress on social media</p>
           </li>
         </ul>
@@ -94,7 +94,7 @@
 
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../assets/img/meditate.jpg" class="d-block w-100 rounded" alt="Meditate!">
+            <img src="/img/meditate.jpg" class="d-block w-100 rounded" alt="Meditate!">
             <div class="carousel-caption d-none d-md-block">
               <h4 class="display-4">Meditation</h4>
               <p class="lead">Take time to enjoy a relaxing session of meditation.</p>
@@ -102,7 +102,7 @@
           </div>
 
           <div class="carousel-item">
-            <img src="../assets/img/naturebreak.jpg" class="d-block w-100 rounded" alt="Take a nature break!">
+            <img src="/img/naturebreak.jpg" class="d-block w-100 rounded" alt="Take a nature break!">
             <div class="carousel-caption d-none d-md-block">
               <h4 class="display-4">Nature Break</h4>
               <p class="lead">Go out and just enjoy your surroundings.</p>
@@ -110,7 +110,7 @@
           </div>
 
           <div class="carousel-item">
-            <img src="../assets/img/enjoy.jpg" class="d-block w-100 rounded" alt="Do something you enjoy!">
+            <img src="/img/enjoy.jpg" class="d-block w-100 rounded" alt="Do something you enjoy!">
             <div class="carousel-caption d-none d-md-block">
               <h4 class="display-4">Do Something You Enjoy</h4>
               <p class="lead">Just do something that makes you happy!</p>
@@ -118,7 +118,7 @@
           </div>
 
           <div class="carousel-item">
-            <img src=../assets/img/talktofriend.jpg class="d-block w-100 rounded" alt="Talk to a friend!">
+            <img src=/img/talktofriend.jpg class="d-block w-100 rounded" alt="Talk to a friend!">
             <div class="carousel-caption d-none d-md-block">
               <h4 class="display-4">Talk to a Friend</h4>
               <p class="lead">Connect with a friend!</p>
@@ -156,7 +156,7 @@
       <div class="container-fluid content img-container p-3 mb-3">
 
         <figure class="figure text-center">
-          <img src="../assets/img/drliza.jpeg" class="figure-img img-fluid rounded" alt="Dr. Liza Ignatova">
+          <img src="/img/drliza.jpeg" class="figure-img img-fluid rounded" alt="Dr. Liza Ignatova">
           <figcaption class="figure-caption"><em>Dr. Liza Ignatova</em></figcaption>
         </figure>
       </div>

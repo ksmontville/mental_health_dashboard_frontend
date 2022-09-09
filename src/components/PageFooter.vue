@@ -14,7 +14,7 @@
           <textarea class="form-control"  id="messageField" placeholder="How can we help you?"></textarea>
           <label class="text-muted" for="messageField"><small>How can we help you?</small></label>
         </div>
-        <button class="btn btn-dark btn-sm" type="submit">Submit</button>
+        <button class="btn btn-info btn-sm" type="submit">Submit</button>
       </div>
 
       <div class="footer text-container">

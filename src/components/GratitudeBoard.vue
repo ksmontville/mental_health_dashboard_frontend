@@ -11,7 +11,7 @@
             <label class="input-group-text" for="" @click="drawImg">Upload</label>
           </div>
           <button class="btn btn-info" @click="clear">Clear</button>
-        <button class="btn btn-info" @click="edit">Edit</button>
+        <button class="btn btn-info" @tap="click" @click="edit">Edit</button>
       </div>
 
       <v-stage ref="stage" :config="stageConfig">
@@ -165,7 +165,6 @@ export default {
 
     function click(event) {
       const shape = getStageNode().find('.myImage')
-      console.log(event.target.name())
       if(event.target.name() === 'canvas') {
         getTransformerNode().nodes([])
       }

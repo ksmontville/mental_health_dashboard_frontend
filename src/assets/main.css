@@ -3,32 +3,34 @@
 /* General Styling */
 #app {
   max-width: 1280px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
   padding: 0;
-  color: white;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  color: lightcyan;
   font-weight: normal;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.container-fluid {
+  padding: 0;
+}
+
 body {
-  background-color: black;
+  background-color: lavender;
 }
 
 header {
   background-color: darkslateblue;
   text-align: center;
-  min-width: 100vw;
+
 }
 main {
   display: flex;
-  flex-flow: column nowrap;
-  font-size: 4vw;
-  justify-content: space-between;
-  min-width: 100vw;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 footer {
@@ -37,8 +39,6 @@ footer {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  margin-top: auto;
-  min-width: 100vw;
   color: lavenderblush;
 }
 
@@ -59,6 +59,7 @@ footer .footer-contact {
   flex: 2;
   display: flex;
   flex-flow: column nowrap;
+  padding: 0 2.4vw;
 }
 
 footer .footer-contact button {
@@ -94,14 +95,13 @@ ul {
 }
 
 li {
-  font-size: 4.8vw;
   margin: 3.6vw;
 }
 
 .navbar {
-  background-color: lavender !important;
-  padding: 1vw;
-  min-width: 100vw;
+  background-color: lavenderblush !important;
+  padding: 1.2vw 2.4vw;
+
 }
 
 .navbar-brand {
@@ -112,6 +112,11 @@ li {
 
 
 /* LandingPage Styling */
+
+.img-fluid {
+  box-shadow: 0.8vw 1.2vw lightyellow;
+}
+
 .content.bg-wrapper::before {
   content: "";
   position: absolute;
@@ -121,8 +126,29 @@ li {
   right: 0;
   background-image: url('img/rainbow_door.jpg');
   background-size: cover;
-  opacity: 0.75;
+  opacity: 1;
+}
 
+.content--intro {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+
+.content--intro .img-fluid {
+}
+
+.content--call {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.content--call  button {
+  background-color: darkslateblue !important;
+  border-color: lavender !important;
+  color: lavender !important;
 }
 
 .content--get-started {
@@ -130,11 +156,9 @@ li {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-
 }
 
 .content--get-started  button {
-  min-width: 64vw;
   background-color: darkslateblue !important;
   border-color: lavender !important;
   color: lavender !important;
@@ -142,7 +166,7 @@ li {
 
 .content--get-started figure {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
 }
@@ -155,20 +179,12 @@ li {
 .content--features {
   display: flex;
   flex-flow: column wrap;
-}
-
-.content--features .img-container {
-  flex: 1;
-  display: flex;
-  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  gap: 4vw 12vw;
 }
 
-.content--features .img-fluid {
-  max-width: 30%;
-  height: auto;
+.content--features .active {
+  border-color: lightyellow;
 }
 
 .content--about {
@@ -180,7 +196,7 @@ li {
 
 .content--about figure {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
 }
@@ -201,6 +217,7 @@ li {
   background-image: url('img/dashbackground1.jpg');
   background-size: cover;
   background-color: black;
+  padding: 0 2.4vw;
 }
 
 .dashboard a {
@@ -236,10 +253,6 @@ canvas {
   object-fit: contain;
 }
 
-.konvajs-content {
-  background-color: white;
-}
-
 .canvas-wrapper {
   display: flex;
   flex-flow: row wrap;
@@ -258,11 +271,37 @@ canvas {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
+
   body {
+
   }
 
+  header {
+
+  }
+
+  footer {
+
+  }
+
+  .navbar {
+
+  }
+
+  .content {
+
+  }
+
+  main {
+
+  }
+
+  li {
+  margin: 3.6vw;
+}
+
   #app {
-    max-width: 10%;
+
   }
 }

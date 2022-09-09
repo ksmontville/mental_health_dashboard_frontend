@@ -48,7 +48,7 @@
         <ul>
           <li>
             <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">
-                Create your own tasks, or choose from one of many presets created by mental health professionals</p>
+                Create your own mindfulness activities, or choose from one of many presets created by mental health professionals</p>
           </li>
           <li>
             <p><img src="/icon/caret-right.svg" alt="Carat Right Icon">

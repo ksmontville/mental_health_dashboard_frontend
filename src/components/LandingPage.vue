@@ -13,10 +13,10 @@
 
     <section class="container-fluid content content--call">
       <span>
-        <img src="../assets/icon/chevron-double-right.svg" class="p-3 mb-3" alt="Chevron Double Right">
+        <img src="src/assets/icon/chevron-double-right.svg" class="p-3 mb-3" alt="Chevron Double Right">
         <button class="btn btn-primary btn-lg bg-gradient p-4 mb-4" v-if="isAuthenticated" @click="router.push('/dashboard')">To Dashboard</button>
         <button class="btn btn-primary btn-lg bg-gradient p-4 mb-4" v-else @click="login">Get Started!</button>
-        <img src="../assets/icon/chevron-double-left.svg" class="p-3 mb-3" alt="Chevron Double Left">
+        <img src="src/assets/icon/chevron-double-left.svg" class="p-3 mb-3" alt="Chevron Double Left">
       </span>
 
       <div class="container-fluid p-2">

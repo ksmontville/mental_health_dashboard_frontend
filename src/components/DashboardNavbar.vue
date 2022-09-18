@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <div class="d-grid col-6 pt-3 pb-3">
+    <div class="container-fluid d-lg-grid col-lg-6">
       <button class="btn btn-info bg-gradient" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboardNav" aria-controls="offcanvasExample">
         <strong>Go to...</strong>
       </button>
@@ -8,7 +8,7 @@
 
     <div class="offcanvas offcanvas-start text-dark text-center" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="dashboardNav" aria-labelledby="dashboardNav">
       <div class="offcanvas-header">
-        <h2 class="display-2">Navigation</h2>
+        <h2 class="display-2">My Mental Health</h2>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">

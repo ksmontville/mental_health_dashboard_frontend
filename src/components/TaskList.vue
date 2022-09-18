@@ -1,8 +1,9 @@
 <template>
   <div class="container-fluid p-2 dashboard bg-wrapper bg-gradient">
-    <nav>
+
+    <div class="container-fluid p-2 mt-2 mb-2">
       <DashboardNavbar />
-    </nav>
+    </div>
 
     <div class="toggleButtons">
       <div class="container-fluid p-2 btn-group btn-group-sm btn-group__activities" role="group" aria-label="Task List Buttons">
@@ -81,7 +82,7 @@
       </section>
 
     <div class="container-fluid p-2 tasks taskList">
-        <ul class="vstack taskList">
+        <ul class="taskList">
           <li v-for="task in tasks[0]" :key="task.id">
             <div v-if="user.sub === task.owner">
               <div class="container-fluid list-group taskList__child">

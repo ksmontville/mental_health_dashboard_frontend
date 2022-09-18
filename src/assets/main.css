@@ -95,20 +95,21 @@ li {
 }
 
 .navbar {
+  display: flex;
+  flex-flow: row wrap;
   background-color: ghostwhite !important;
   padding: 0 1.2vw;
-
 }
 
-.navbar-brand {
-
-}
-.nav-link {
+.offcanvas {
+  background-color: ghostwhite;
 }
 
+.offcanvas a {
+  color: lavenderblush;
+}
 
 /* LandingPage Styling */
-
 .img-fluid {
   box-shadow: 0.8vw 1.2vw lightcyan;
 }
@@ -228,6 +229,16 @@ li {
 }
 
 /* UserProfile styling*/
+.profile {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control.active{
+  border: 4px solid yellow;
+}
 
 
 /* TaskList Styling*/
@@ -251,8 +262,11 @@ li {
 
 /* Gratitude Board Styling*/
 .toolbar {
-  background-color: gray;
+  display: flex;
+  flex-flow: column wrap;
 }
+
+
 
 
 /* Media Settings */

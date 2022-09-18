@@ -1,14 +1,16 @@
 <template>
   <div class="container-fluid p-3 dashboard bg-wrapper bg-gradient">
-    <nav>
+
+    <div class="container-fluid p-2 mt-2 mb-2">
       <DashboardNavbar />
-    </nav>
+    </div>
+
     <section class="container-fluid dashboard text-container" v-if="isAuthenticated">
       <h3 class="display-3 p-2">Hello, {{ displayName }}!</h3>
       <h4><em>Last Login: {{ user.updated_at.slice(0, 10) }}</em></h4>
     </section>
 
-    <section style="min-height: 100vh;">
+    <section class="container-fluid p-3 mb-3">
       Some kind of summary of recent activity here
     </section>
 

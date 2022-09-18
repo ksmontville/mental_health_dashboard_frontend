@@ -1,17 +1,22 @@
 <template>
   <div class="dashboard bg-wrapper bg-gradient">
-    <nav>
+
+    <div class="container-fluid p-2 mt-2 mb-2">
       <DashboardNavbar />
-    </nav>
+    </div>
 
     <div class="canvas-wrapper" id="canvasContainer">
-      <div class="toolbar bg-gradient" style="background-color: black">
+      <div class="btn-toolbar toolbar bg-gradient p-3 mb-3">
           <div class="input-group mb-3">
             <input ref= "imgInput" accept="image/*" type="file" class="form-control" id="imgUpload" v-on:change="">
             <label class="input-group-text" for="" @click="drawImg">Upload</label>
           </div>
-          <button class="btn btn-info" @click="clear">Clear</button>
-        <button class="btn btn-info" @tap="click" @click="edit">Edit</button>
+        <div class="btn-group" role="group" aria-label="Toolbar buttons">
+          <button class="btn btn-info me-1 text-decoration-line-through">[ Undo ]</button>
+          <button class="btn btn-info me-1 text-decoration-line-through">[ Redo ]</button>
+          <button class="btn btn-info me-1" @click="clear">[ Clear ]</button>
+          <button class="btn btn-info me-1" @tap="click" @click="edit">[ Edit ]</button>
+        </div>
       </div>
 
       <v-stage ref="stage" :config="stageConfig">
@@ -51,7 +56,7 @@ export default {
       name: 'canvas',
       width: 400,
       height: 600,
-      fill: 'lavender'
+      fill: 'white'
     }
 
     const imgInput = ref()

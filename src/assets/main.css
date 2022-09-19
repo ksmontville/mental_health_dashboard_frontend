@@ -18,7 +18,10 @@
 }
 
 body {
-  background-color: lavender;
+  background-image: url('/img/dashbackground1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: lightpink;
 }
 
 header {
@@ -242,6 +245,9 @@ li {
 
 
 /* TaskList Styling*/
+.card {
+  width: 21rem;
+}
 .btn.btn-primary {
 
 }
@@ -278,6 +284,10 @@ li {
 
 @media (min-width: 768px) {
 
+  #app {
+    padding: 0 9.6vw;
+  }
+
   body {
 
   }
@@ -287,6 +297,7 @@ li {
   }
 
   footer {
+
 
   }
 
@@ -302,11 +313,59 @@ li {
 
   }
 
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
   li {
-  margin: 3.6vw;
+    margin: 3.6vw;
 }
 
-  #app {
+  .lead {
 
   }
+
+  .figure-caption {
+    font-size: 1.2vw;
+    margin: 0.8vw;
+  }
+
+  .dashNav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+  }
+
+  .dashNav button {
+    width: 9.6vw;
+  }
+
+  .sub-menu {
+    max-width: 10%;
+  }
+
+  ul.dropdown-menu.show {
+    max-width: 50%;
+    margin: 0;
+    padding: 0;
+  }
+
+  li.dropdown-item {
+    margin: 0;
+    padding: 0 1.2vw;
+  }
+
+  .card {
+    width: 36rem;
+  }
+
+  .addForm {
+    max-width: 64%;
+  }
+
+  .details, .profile input {
+    max-width: 64%;
+  }
+
 }

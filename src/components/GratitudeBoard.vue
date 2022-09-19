@@ -1,11 +1,11 @@
 <template>
   <div class="dashboard bg-wrapper bg-gradient">
 
-    <div class="container-fluid p-2 mt-2 mb-2">
+    <div class="dashNav container-fluid p-2 mt-2 mb-2">
       <DashboardNavbar />
     </div>
 
-    <div class="canvas-wrapper" id="canvasContainer">
+    <div class="container-fluid canvas-wrapper" ref="container" id="canvasContainer">
       <div class="btn-toolbar toolbar bg-gradient p-3 mb-3">
           <div class="input-group mb-3">
             <input ref= "imgInput" accept="image/*" type="file" class="form-control" id="imgUpload" v-on:change="">
@@ -19,51 +19,63 @@
         </div>
       </div>
 
-      <v-stage ref="stage" :config="stageConfig">
+      <v-stage v-if="isMobile" ref="stage" :config="stageConfig">
         <v-layer ref="layer">
           <v-rect ref="canvas" :config="canvasConfig" @click="click" @tap="click"
                   @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown"
                   @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"/>
-<!--          <v-circle ref="circle" @click="click" @tap="click" :config="{x: 100, y: 100, radius: 50, fill: 'black', name: 'circle'}" />-->
           <v-image @click="click" @tap="click" ref="imgUploaded" :config="standby === false ? {image: imgUploaded.value} : null"/>
           <v-transformer ref="transformer"/>
         </v-layer>
       </v-stage>
 
+      <v-stage v-else ref="stage" :config="stageConfigLarge">
+        <v-layer ref="layer">
+          <v-rect ref="canvas" :config="canvasConfig" @click="click" @tap="click"
+                  @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown"
+                  @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"/>
+          <v-image @click="click" @tap="click" ref="imgUploaded" :config="standby === false ? {image: imgUploaded.value} : null"/>
+          <v-transformer ref="transformer"/>
+        </v-layer>
+      </v-stage>
     </div>
   </div>
 </template>
 
 <script>
 
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import Konva from "konva";
 
 export default {
   name: "GratitudeBoard",
 
   setup() {
+    const isMobile = ref()
     const stage = ref()
     const stageConfig = {
       name: 'stage',
-      width: 400,
-      height: 600,
+      width: window.innerWidth,
+      height: window.innerHeight,
+    }
+    const stageConfigLarge = {
+      name: 'stage',
+      width: window.innerWidth / 2.11,
+      height: window.innerHeight,
     }
 
     const layer= ref()
     const canvas = ref()
     const canvasConfig = {
       name: 'canvas',
-      width: 400,
-      height: 600,
-      fill: 'white'
+      width: stageConfig.width,
+      height: stageConfig.height,
+      fill: 'white',
     }
 
     const imgInput = ref()
     const imgUploaded = ref()
     const standby = ref(true)
-
-    const circle = ref()
 
     const transformer = ref()
 
@@ -75,6 +87,11 @@ export default {
     const touchY = ref()
     const touchStart = ref(false)
 
+    detectBrowser()
+
+    function detectBrowser() {
+      isMobile.value = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent);
+    }
 
     function getStageNode() {
       return stage.value.getNode()
@@ -173,9 +190,6 @@ export default {
       if(event.target.name() === 'canvas') {
         getTransformerNode().nodes([])
       }
-      else if(event.target.name() === 'circle') {
-        getTransformerNode().nodes([circle.value.getNode()])
-      }
       else if (event.target.name() === shape[0].name()) {
         console.log(event.type)
         getTransformerNode().nodes([shape[0]])
@@ -184,8 +198,8 @@ export default {
     }
 
     return {
-    stage, layer, canvas, stageConfig, imgInput, standby, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY,
-    canvasConfig, imgUploaded, transformer, circle,
+    isMobile, stage, layer, canvas, stageConfig, stageConfigLarge, imgInput, standby, mouseIsDown, mouseX, mouseY, touchStart, touchX, touchY,
+    canvasConfig, imgUploaded, transformer,
     draw, toggleMouseIsDown, touch, toggleTouchStart, clear, drawImg, click, edit,
       }
     },

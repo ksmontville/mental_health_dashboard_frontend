@@ -132,12 +132,11 @@
           <img src="/icon/icons8-facebook-64.png" class="img-fluid no-shadow p-2 m-2" alt="Facebook Icon">
           <img src="/icon/icons8-twitter-64.png" class="img-fluid no-shadow p-2 m-2" alt="Twitter Icon">
           <img src="/icon/icons8-instagram-64.png" class="img-fluid no-shadow p-2 m-2" alt="Instagram Icon">
-<!--          <img src="/icon/icons8-youtube-logo-64.png" class="img-fluid p-2 m-2" alt="YouTube Icon">-->
         </div>
       </div>
     </section>
 
-    <div class="container-fluid p-2">
+    <div class="container-fluid p-4">
         <hr class="section-break">
     </div>
 

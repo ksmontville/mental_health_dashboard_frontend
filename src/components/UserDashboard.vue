@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid p-3 dashboard bg-wrapper bg-gradient">
 
-    <div class="container-fluid p-2 mt-2 mb-2">
+    <div class="dashNav container-fluid p-2 mt-2 mb-2">
       <DashboardNavbar />
     </div>
 

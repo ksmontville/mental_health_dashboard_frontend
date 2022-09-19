@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid p-2 dashboard bg-wrapper bg-gradient">
 
-    <div class="container-fluid p-2 mt-2 mb-2">
+    <div class="dashNav container-fluid p-2 mt-2 mb-2">
       <DashboardNavbar />
     </div>
 
@@ -25,7 +25,7 @@
             </li>
 
             <li class="dropdown-item"><label>Mental</label>
-              <ul class="sub-menu" v-for="preset in presets[1]" :key="preset.id">
+              <ul class="addTask sub-menu" v-for="preset in presets[1]" :key="preset.id">
                   <li><button class="dropdown-item" type="button" :value="preset.title" @click="addTask">{{ preset.title }}</button></li>
               </ul>
             </li>
@@ -86,7 +86,7 @@
           <li v-for="task in tasks[0]" :key="task.id">
             <div v-if="user.sub === task.owner">
               <div class="container-fluid list-group taskList__child">
-                <div class="container-fluid card" style="width: 21rem;">
+                <div class="container-fluid card">
                   <div class="card-body" style="color:black;">
                     <h5 class="display-5 card-title">{{ task.title }}</h5>
                     <h6 class="card-subtitle mb-3 text-muted">{{ task.duration }} minutes</h6>

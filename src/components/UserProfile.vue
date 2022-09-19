@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid dashboard bg-wrapper bg-gradient">
 
-    <div class="container-fluid p-2 mt-2 mb-2">
+    <div class="dashNav container-fluid p-2 mt-2 mb-2">
       <DashboardNavbar />
     </div>
 
@@ -86,7 +86,8 @@ export default {
 
     async function editMetaData() {
       const token = await getAccessTokenSilently();
-      const response = await axios.patch(`${MANAGEMENT_API}`, {
+      await axios.patch(`${MANAGEMENT_API}`, {
+        "user_metadata[preferred_name]": preferredName.value,
         "user_metadata[display_name]": displayName.value,
         "user_metadata[user_id]": user.value.sub,
         "user_metadata[social_networks][facebook]": socialNetworks[0].acct,

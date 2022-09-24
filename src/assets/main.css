@@ -20,7 +20,7 @@
 body {
   background-image: url('/img/rainbow_door.jpg');
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-attachment: fixed;
 }
 

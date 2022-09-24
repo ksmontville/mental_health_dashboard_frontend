@@ -21,20 +21,16 @@
 
       <v-stage v-if="isMobile" ref="stage" :config="stageConfig">
         <v-layer ref="layer">
-          <v-rect ref="canvas" :config="canvasConfig" @click="click" @tap="click"
-                  @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown"
-                  @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"/>
-          <v-image @click="click" @tap="click" ref="imgUploaded" :config="standby === false ? {image: imgUploaded.value} : null"/>
+          <v-rect ref="canvas" :config="canvasConfig" @tap="click" @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"/>
+          <v-image @tap="click" ref="imgUploaded" :config="standby === false ? {image: imgUploaded.value} : null"/>
           <v-transformer ref="transformer"/>
         </v-layer>
       </v-stage>
 
       <v-stage v-else ref="stage" :config="stageConfigLarge">
         <v-layer ref="layer">
-          <v-rect ref="canvas" :config="canvasConfig" @click="click" @tap="click"
-                  @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown"
-                  @touchmove="touch" @touchstart="toggleTouchStart" @touchend="toggleTouchStart"/>
-          <v-image @click="click" @tap="click" ref="imgUploaded" :config="standby === false ? {image: imgUploaded.value} : null"/>
+          <v-rect ref="canvas" :config="canvasConfig" @click="click" @mousemove="draw" @mousedown="toggleMouseIsDown" @mouseup="toggleMouseIsDown"/>
+          <v-image @click="click" ref="imgUploaded" :config="standby === false ? {image: imgUploaded.value} : null"/>
           <v-transformer ref="transformer"/>
         </v-layer>
       </v-stage>
@@ -60,7 +56,7 @@ export default {
     }
     const stageConfigLarge = {
       name: 'stage',
-      width: window.innerWidth / 2.11,
+      width: window.innerWidth,
       height: window.innerHeight,
     }
 
@@ -104,7 +100,6 @@ export default {
     function getTransformerNode() {
       return transformer.value.getNode()
     }
-
 
     function clear() {
       const children = getLayerNode().children

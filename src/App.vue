@@ -22,9 +22,9 @@ import PageFooter from './components/PageFooter.vue'
     <main class="container-fluid">
       <Suspense>
         <router-view />
-        <template #fallback>
-          <span>There was an error.</span>
-        </template>
+          <template #fallback>
+            <h4>Loading... </h4>
+          </template>
       </Suspense>
     </main>
 

@@ -6,7 +6,7 @@
     </div>
 
     <section class="container-fluid dashboard text-container" v-if="isAuthenticated">
-      <h3 class="display-3 p-2">Hello, {{ user.nickname }}!</h3>
+      <h3 class="display-3 p-2">Hello, {{ preferredName }}!</h3>
       <h4><em>Last Login: {{ user.updated_at.slice(0, 10) }}</em></h4>
     </section>
 
@@ -31,21 +31,22 @@ export default {
   async setup() {
     const {user, isAuthenticated, getAccessTokenSilently} = useAuth0();
 
-    const displayName = ref('')
+    const preferredName = ref('')
 
-    await getDisplayName()
+    await getMetaData()
 
-     async function getDisplayName() {
+    async function getMetaData() {
       const token = await getAccessTokenSilently();
       const response = await axios.get(`${MANAGEMENT_API}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      displayName.value = response.data[0].user_metadata.display_name
+      const data = response.data[0]
+      preferredName.value = data.user_metadata.preferred_name
     }
 
-    return {user, isAuthenticated, displayName}
+    return {user, isAuthenticated, preferredName}
   },
 }
 

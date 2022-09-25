@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-bg-light bg-gradient">
     <div class="container-fluid p-2" id="navbar">
-      <router-link to="/dashboard" v-if="isAuthenticated" class="navbar-brand">Logged in as: {{ user.nickname }}</router-link>
+      <router-link to="/dashboard" v-if="isAuthenticated" class="navbar-brand">Logged in as: {{ displayName }}</router-link>
       <router-link to="/dashboard" v-else v-on:click="login" class="navbar-brand">Log In | Register</router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
               aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,17 +28,32 @@
 <script>
 import {useAuth0} from "@auth0/auth0-vue";
 import {ref} from "vue";
+import axios from "axios";
+
+const MANAGEMENT_API = "https://dli-backend.herokuapp.com/api/users/management"
 
 export default {
   name: "PageHeader",
 
-  setup() {
-    const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+  async setup() {
+    const { loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const navVisible = ref(false)
+    const displayName = ref('')
 
+     await getDisplayName()
 
-      return {
-        user, isAuthenticated, navVisible,
+     async function getDisplayName() {
+      const token = await getAccessTokenSilently();
+      const response = await axios.get(`${MANAGEMENT_API}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      displayName.value = response.data[0].user_metadata.display_name
+    }
+
+    return {
+        user, isAuthenticated, navVisible, displayName,
 
         toggleNav: () => {
           navVisible.value = !navVisible.value

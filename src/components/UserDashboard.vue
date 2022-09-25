@@ -6,7 +6,7 @@
     </div>
 
     <section class="container-fluid dashboard text-container" v-if="isAuthenticated">
-      <h3 class="display-3 p-2">Hello, {{ displayName }}!</h3>
+      <h3 class="display-3 p-2">Hello, {{ user.nickname }}!</h3>
       <h4><em>Last Login: {{ user.updated_at.slice(0, 10) }}</em></h4>
     </section>
 

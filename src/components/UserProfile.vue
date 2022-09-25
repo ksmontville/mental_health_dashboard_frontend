@@ -77,7 +77,7 @@ export default {
       const data = response.data[0]
       avatar.value = user.value.picture
       displayName.value = data.user_metadata.display_name
-      preferredName.value = data.user_metadata.preferred_name
+      preferredName.value = user.value.nickname
       socialNetworks[0].acct = data.user_metadata.social_networks.facebook
       socialNetworks[1].acct = data.user_metadata.social_networks.instagram
       socialNetworks[2].acct = data.user_metadata.social_networks.twitter

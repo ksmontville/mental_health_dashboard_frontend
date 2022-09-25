@@ -35,12 +35,12 @@ const MANAGEMENT_API = "https://dli-backend.herokuapp.com/api/users/management"
 export default {
   name: "PageHeader",
 
-   async setup() {
+  setup() {
     const { loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const navVisible = ref(false)
     const displayName = ref('')
 
-     await getDisplayName()
+    getDisplayName()
 
      async function getDisplayName() {
       const token = await getAccessTokenSilently();

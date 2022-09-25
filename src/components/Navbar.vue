@@ -40,7 +40,7 @@ export default {
     const navVisible = ref(false)
     const displayName = ref('')
 
-     getDisplayName()
+     await getDisplayName()
 
      async function getDisplayName() {
       const token = await getAccessTokenSilently();

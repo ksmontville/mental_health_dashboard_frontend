@@ -37,7 +37,6 @@ export default {
 
   async setup() {
     const { loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-    const navVisible = ref(false)
     const displayName = ref('')
 
      await getDisplayName()
@@ -54,7 +53,7 @@ export default {
     }
 
     return {
-        user, isAuthenticated, navVisible, displayName,
+        user, isAuthenticated, displayName,
 
         login: () => {
           loginWithRedirect()

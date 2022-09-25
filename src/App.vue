@@ -11,7 +11,12 @@ import PageFooter from './components/PageFooter.vue'
 <!--    </header>-->
 
     <nav class="container-fluid">
-      <Navbar />
+      <Suspense>
+        <Navbar />
+        <template #fallback>
+          <p>Loading...</p>
+        </template>
+      </Suspense>
     </nav>
 
     <main class="container-fluid">

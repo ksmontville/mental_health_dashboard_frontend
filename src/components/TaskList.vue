@@ -84,7 +84,7 @@
 
       <section id="taskList">
         <ul class="taskList">
-          <li v-for="task in tasks[0]" :key="task.id">
+          <li v-for="task in tasks[0]">
             <div v-if="user.sub === task.owner">
               <div class="container-fluid list-group taskList__child">
                 <div class="container-fluid card">

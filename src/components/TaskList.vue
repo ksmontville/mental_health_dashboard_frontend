@@ -99,7 +99,7 @@
                     <button class="btn btn-dark" v-if="!task.canEdit" @click="task.canEdit = !task.canEdit" id="editButton">Edit (Coming Soon)</button>
                     <button class="btn btn-light" v-else @click="editTask(task).then(toggleCanEdit)" id="submitButton">Submit</button>
                     <button class="btn btn-secondary" @click="deleteTask(task)">Remove</button><br>
-                    <input class="btn-check" type="checkbox" id="isComplete" v-model="task.completed" @click="markTaskComplete(task)">
+                    <input class="btn-check" type="checkbox" id="isComplete" v-model="task.completed" @click="showID(task)">
                     <label class="btn btn-outline-info" for="isComplete">Done!</label>
                   </div>
                   <p class="card-text p-2 mt-2" style="color:black;"><label v-if="task.completed"><em>&check; {{ task.date_completed }}</em></label></p>
@@ -215,6 +215,10 @@ export default {
       }
     }
 
+    function showID(task) {
+      console.log(task.id)
+    }
+
     async function markTaskComplete(task) {
       try {
         const token = await getAccessTokenSilently();
@@ -288,7 +292,7 @@ export default {
       return {
         user, tasks, task, isHidden, canEdit, currentTasks, showAllTasks, isActive, currentIsActive, completeIsActive,
         activeButton, presets,
-        getAllTasks, postTask, editTask, deleteTask, markTaskComplete, getCurrentTasks, getCompleteTasks
+        getAllTasks, postTask, editTask, deleteTask, markTaskComplete, getCurrentTasks, getCompleteTasks, showID,
     }
   },
   methods: {

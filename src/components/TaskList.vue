@@ -98,7 +98,7 @@
                   <div class="container-fluid p-2 text-center btn-group" role="group">
                     <button class="btn btn-dark" v-if="!task.canEdit" @click="task.canEdit = !task.canEdit" id="editButton">Edit (Coming Soon)</button>
                     <button class="btn btn-light" v-else @click="editTask(task).then(toggleCanEdit)" id="submitButton">Submit</button>
-                    <button class="btn btn-secondary" @click="deleteTask(task)">Remove</button><br>
+                    <button class="btn btn-secondary" @click="showID(task)">Remove</button><br>
                     <input class="btn-check" type="checkbox" id="isComplete" v-model="task.completed" @click="showID(task)">
                     <label class="btn btn-outline-info" for="isComplete">Done!</label>
                   </div>

@@ -153,7 +153,6 @@ export default {
     getPresets()
     getCurrentTasks()
 
-
     async function getPresets() {
       const creative = await axios.get(`${API_URL}/api/preset/?category=creative`)
       presets.push(creative.data)
@@ -176,6 +175,7 @@ export default {
         }
       });
       tasks[0] = data.data
+      console.log(tasks[0])
     }
 
     async function postTask() {
@@ -209,9 +209,29 @@ export default {
           headers: {
             Authorization: `Bearer ${token}`,
           }
-        }); await setTaskList()
-      } catch(errors) {
-        console.log(errors)
+        }); await setTaskList(); console.log(task.id)
+      } catch(error) {
+        console.log(error)
+      }
+    }
+
+    async function markTaskComplete(task) {
+      try {
+        const token = await getAccessTokenSilently();
+        await axios.put(`${API_URL}/api/tasks/${task.id}`, {
+          'id': task.id,
+          'owner': user.value.sub,
+          'title': task.title,
+          'duration': task.duration,
+          'completed': !task.completed,
+          'date_completed': new Date().toLocaleString()
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }); await setTaskList(); console.log(`${API_URL}/api/tasks/${task.id}`); console.log(task.id)
+      } catch(error){
+        console.log(error)
       }
     }
 
@@ -235,24 +255,6 @@ export default {
       }
     }
 
-    async function markTaskComplete(task) {
-      try {
-        const token = await getAccessTokenSilently();
-        await axios.put(`${API_URL}/api/tasks/${task.id}`, {
-          'owner': user.value.sub,
-          'title': task.title,
-          'duration': task.duration,
-          'completed': !task.completed,
-          'date_completed': new Date().toLocaleString()
-        }, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }); await setTaskList(); console.log(`${API_URL}/api/tasks/${task.id}`); console.log(task.id)
-      } catch(error){
-        console.log(error)
-      }
-    }
 
     async function getCurrentTasks() {
       try {

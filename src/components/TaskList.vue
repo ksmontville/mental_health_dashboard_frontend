@@ -44,8 +44,8 @@
           </li>
         </ul>
 
-        <button class="btn btn-outline-light toggleButtons current" v-bind:class="{ active: activeButton === 'toggleButtons current' }" @click="toggleCurrentTasks">Show Current</button>
-        <button class="btn btn-outline-light toggleButtons complete" v-bind:class="{ active: activeButton === 'toggleButtons complete' }" @click="toggleCompleteTasks">Show Complete</button>
+        <button class="btn btn-outline-light toggleButtons current" v-bind:class="{ active: activeButton === 'toggleButtons current'}" @click="toggleCurrentTasks">Show Current</button>
+        <button class="btn btn-outline-light toggleButtons complete" v-bind:class="{ active: activeButton === 'toggleButtons complete'}" @click="toggleCompleteTasks">Show Complete</button>
         <input type="checkbox" class="btn-check toggleButtons showAll" id="showAllToggle" @click="toggleShowAllTasks" ref="showAll">
         <label class="btn btn-outline-light" for="showAllToggle">Show All</label>
       </div>
@@ -84,7 +84,7 @@
 
       <section id="taskList">
         <ul class="taskList">
-          <li v-for="task in tasks[0]">
+          <li v-for="task in tasks[0]" :key="task.id">
             <div v-if="user.sub === task.owner">
               <div class="container-fluid list-group taskList__child">
                 <div class="container-fluid card">
@@ -98,9 +98,9 @@
                   <div class="container-fluid p-2 text-center btn-group" role="group">
                     <button class="btn btn-dark" v-if="!task.canEdit" @click="task.canEdit = !task.canEdit" id="editButton">Edit (Coming Soon)</button>
                     <button class="btn btn-light" v-else @click="editTask(task).then(toggleCanEdit)" id="submitButton">Submit</button>
-                    <button class="btn btn-secondary" @click="showID(task)">Remove</button><br>
-                    <input class="btn-check" type="checkbox" id="isComplete" v-model="task.completed" @click="showID(task)">
-                    <label class="btn btn-outline-info" for="isComplete">Done!</label>
+                    <button class="btn btn-secondary" @click="deleteTask(task)">Remove</button><br>
+                    <input class="btn-check" type="checkbox" :id=task.id v-model="task.completed" @click="markTaskComplete(task)">
+                    <label class="btn btn-outline-info" :for=task.id>Done!</label>
                   </div>
                   <p class="card-text p-2 mt-2" style="color:black;"><label v-if="task.completed"><em>&check; {{ task.date_completed }}</em></label></p>
                 </div>
@@ -150,9 +150,6 @@ export default {
     let showAllTasks = ref(false)
     let canEdit = ref(false)
 
-    getPresets()
-    getCurrentTasks()
-
     async function getPresets() {
       const creative = await axios.get(`${API_URL}/api/preset/?category=creative`)
       presets.push(creative.data)
@@ -166,17 +163,6 @@ export default {
       const social = await axios.get(`${API_URL}/api/preset/?category=social`)
       presets.push(social.data)
       }
-
-    async function getAllTasks() {
-      const token = await getAccessTokenSilently();
-      const data = await axios.get(`${API_URL}/api/tasks/`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      tasks[0] = data.data
-      console.log(tasks[0])
-    }
 
     async function postTask() {
       try {
@@ -215,10 +201,6 @@ export default {
       }
     }
 
-    function showID(task) {
-      console.log(task.id)
-    }
-
     async function markTaskComplete(task) {
       try {
         const token = await getAccessTokenSilently();
@@ -233,7 +215,7 @@ export default {
           headers: {
             Authorization: `Bearer ${token}`
           }
-        }); await setTaskList(); console.log(`${API_URL}/api/tasks/${task.id}`); console.log(task.id)
+        }); await setTaskList()
       } catch(error){
         console.log(error)
       }
@@ -259,12 +241,10 @@ export default {
       }
     }
 
-
     async function getCurrentTasks() {
       try {
         const response = await axios.get(`${API_URL}/api/tasklist/?owner=${user.value.sub}&completed=false`)
         tasks[0] = response.data
-        console.log(tasks[0])
       } catch(error) {
         console.log(error)
       }
@@ -279,20 +259,28 @@ export default {
       }
     }
 
-      async function setTaskList() {
-        if (activeButton.value === 'toggleButtons current') {
-          await getCurrentTasks()
-        } else if (activeButton.value === 'toggleButtons complete') {
-          await getCompleteTasks()
-        } else {
-          await getAllTasks()
-        }
+   async function getAllTasks() {
+    const data = await axios.get(`${API_URL}/api/tasklist?owner=${user.value.sub}`)
+    tasks[0] = data.data
+    }
+
+    async function setTaskList() {
+      if (activeButton.value === 'toggleButtons current') {
+        await getCurrentTasks()
+      } else if (activeButton.value === 'toggleButtons complete') {
+        await getCompleteTasks()
+      } else {
+        await getAllTasks()
       }
+    }
+
+      getPresets()
+      getCurrentTasks()
 
       return {
         user, tasks, task, isHidden, canEdit, currentTasks, showAllTasks, isActive, currentIsActive, completeIsActive,
         activeButton, presets,
-        getAllTasks, postTask, editTask, deleteTask, markTaskComplete, getCurrentTasks, getCompleteTasks, showID,
+        getAllTasks, postTask, editTask, deleteTask, markTaskComplete, getCurrentTasks, getCompleteTasks,
     }
   },
   methods: {

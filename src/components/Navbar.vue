@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-bg-light bg-gradient">
     <div class="container-fluid p-2" id="navbar">
-      <router-link to="/dashboard" v-if="isAuthenticated" class="navbar-brand">Logged in as: {{ displayName }}</router-link>
-      <router-link to="/dashboard" v-else v-on:click="login" class="navbar-brand">Log In | Register</router-link>
+      <router-link to="/dashboard" v-if="isAuthenticated" class="navbar-brand">Hello, {{ displayName }}!</router-link>
+      <router-link to="/dashboard" v-else @click="login" class="navbar-brand">Log In | Register</router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler"
               aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
 
 <script>
 import {useAuth0} from "@auth0/auth0-vue";
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import axios from "axios";
 
 const MANAGEMENT_API = "https://dli-backend.herokuapp.com/api/users/management"
@@ -38,8 +38,6 @@ export default {
   async setup() {
     const { loginWithRedirect, logout, user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const displayName = ref('')
-
-     await getDisplayName()
 
      async function getDisplayName() {
       const token = await getAccessTokenSilently();
@@ -52,11 +50,13 @@ export default {
       displayName.value = data.user_metadata.display_name
     }
 
+    watch([isAuthenticated], await getDisplayName)
+
     return {
         user, isAuthenticated, displayName,
 
         login: () => {
-          loginWithRedirect()
+          loginWithRedirect();
         },
         logout: () => {
           logout( {returnTo: window.location.origin})
